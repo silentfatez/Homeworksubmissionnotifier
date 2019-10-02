@@ -52,7 +52,7 @@ while homework_not_set==True:
         worknumber=input('Math Modelling Number?(From 1 to 6)')
         worknumberint=int(worknumber)
         if worknumberint in range(1,6):
-            type_of_homework=f'MM{worknumber}'
+            type_of_homework=f'MindMap {worknumber}'
             homework_not_set=False
         else:
             print('wrong number range')
@@ -74,12 +74,15 @@ max_score=column_of_interest.max()
 namelist= df.iloc[:,0]
 index_empty_cells=np.where(pd.isnull(column_of_interest.values))
 list_names_empty=namelist.iloc[(index_empty_cells)].values
-bad_students=list_names_empty[0]
-if len(list_names_empty)>1:
-    if len(list_names_empty)==2:
-        bad_students=bad_students+'and '+list_names_empty[1]
-    for listnames in list_names_empty[1:]:
-        bad_students=bad_students+','+ listnames
+if index_empty_cells[0].size==0:
+    bad_students='None'
+else:
+    bad_students=list_names_empty[0]
+    if len(list_names_empty)>1:
+        if len(list_names_empty)==2:
+            bad_students=bad_students+'and '+list_names_empty[1]
+        for listnames in list_names_empty[1:]:
+            bad_students=bad_students+','+ listnames
 
 port = 465  # For SSL
 sender_email = "sender@gmail.com"  # Enter your address
